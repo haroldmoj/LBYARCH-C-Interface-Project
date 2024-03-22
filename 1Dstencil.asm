@@ -1,3 +1,5 @@
+; Harold, Mojica C. | Yung Cheng, Adrian U. | S15
+
 %include "io64.inc"
 section .data
 displayCurrent db "Current: %1.2lf", 10, 0
