@@ -8,6 +8,8 @@ X times 30 dq  0.0
 Y times 30 dq  0.0
 float_zero dq 0.0
 tempX dq 1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0
+;tempX dq 0.0, 2.0, 4.0, 6.0, 8.0, 10.0, 12.0, 14.0
+;tempX dq 9.0, 1.0, 6.0, 4.0, 17.0, 2.0, 6.0, 8.0, 60.0
 
 n dq 0
 tempN dq 8
@@ -34,7 +36,9 @@ main:
 while_loop:
     movsd xmm0, [float_zero]
     mov r8, -3
-    cmp rsi, 5 ; n - 3, since the function requires all to have values, and an index more than n - 3 gives null/0
+    mov r10, [tempN] ; <replace with [n]
+    sub r10, 3
+    cmp rsi, r10 ; <- replace with n - 3, since the function requires all to have values, and an index more than n - 3 gives null/0
     je exit
     
     inner_while:
@@ -48,7 +52,7 @@ while_loop:
         jmp cont_inner_while
         
         negative_index:
-            mov r9, 8
+            mov r9, [tempN] ; <- replace with [n]
             dec r9
             add rbx, r9
             
