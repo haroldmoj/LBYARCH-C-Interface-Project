@@ -4,15 +4,18 @@
 section .data
 displayCurrent db "Current: %1.2lf", 10, 0
 displaySum db "Sum: %1.2lf", 10, 0
-X times 30 dq  0.0
-Y times 30 dq  0.0
-float_zero dq 0.0
-tempX dq 1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0
-;tempX dq 0.0, 2.0, 4.0, 6.0, 8.0, 10.0, 12.0, 14.0
-;tempX dq 9.0, 1.0, 6.0, 4.0, 17.0, 2.0, 6.0, 8.0, 60.0
 
-n dq 0
-tempN dq 8
+; ENTER X HERE (VECTOR VALUES)
+X dq 1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0
+; ENTER N HERE (X SIZE)
+n dq 8
+
+Y times 10 dq  0.0
+float_zero dq 0.0
+;X dq 0.0, 2.0, 4.0, 6.0, 8.0, 10.0, 12.0, 14.0
+;X dq 9.0, 1.0, 6.0, 4.0, 17.0, 2.0, 6.0, 8.0, 60.0
+
+
 i dq 0
 yIndex dq 0
 
@@ -30,13 +33,13 @@ global main
 extern printf, scanf
 main:
     mov rbp, rsp; for correct debugging
-    mov rsi, 0
+    mov rsi, 3
     sub rsp, 8 * 7
     
 while_loop:
     movsd xmm0, [float_zero]
     mov r8, -3
-    mov r10, [tempN] ; <replace with [n]
+    mov r10, [n] ; <replace with [n]
     sub r10, 3
     cmp rsi, r10 ; <- replace with n - 3, since the function requires all to have values, and an index more than n - 3 gives null/0
     je exit
@@ -44,27 +47,27 @@ while_loop:
     inner_while:
         ; current i
         mov rbx, rsi
-        ; i + rsi(-3 to 3)
-        add rbx, r8
+        
         cmp rbx, 0
-        jl negative_index
+        jge cont_inner_while
         
-        jmp cont_inner_while
+        ; jmp negative_index
         
-        negative_index:
-            mov r9, [tempN] ; <- replace with [n]
-            dec r9
-            add rbx, r9
-            
+;       negative_index:
+;            mov r9, [n] ; <- replace with [n]
+;            dec r9
+;            add rbx, r9
+;            
 ;            PRINT_DEC 8, rbx
 ;            NEWLINE
-            
-            jmp cont_inner_while
+;            
+;            jmp cont_inner_while
         
     cont_inner_while:
+        add rbx, r8
         ; Increment R8
         inc r8
-        ; Move r8 to offset for printing
+        ; Move r8 to offset
         mov qword [offset], r8
         
 ;        ; Print Current Number from indexing (tracing)
@@ -72,7 +75,7 @@ while_loop:
 ;        mov rcx, displayCurrent
 ;        call printf
         
-        movsd xmm1, [tempX + rbx * 8]
+        movsd xmm1, [X + rbx * 8]
         addsd xmm0, xmm1
         
         ; return offset to r8
@@ -96,6 +99,7 @@ while_loop:
         call printf
         PRINT_STRING "-------"
         NEWLINE
+        inc qword [yIndex]
         jmp cont_while_loop
     
     
