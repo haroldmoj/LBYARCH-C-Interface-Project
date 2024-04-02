@@ -6,7 +6,7 @@
 #include <time.h>
 
 extern void c_kernel();
-// extern void asm_kernel();
+//extern void asm_kernel();
 
 int main() {
 	// Example given 
@@ -14,10 +14,10 @@ int main() {
 	//float X[] = { 1,2,3,4,5,6,7,8 };
 
 	// Initialize n
-	int n = 1048576; // 2^20
+	//int n = 1048576; // 2^20
 	//int n = 16777216; // 2^24
 	//int n = 268435456; // 2^28
-	//int n = 536870912; // 2^29
+	int n = 536870912; // 2^29
 	//int n = 1073741824; // 2^30
 
 	// Initialize vector X
@@ -48,10 +48,11 @@ int main() {
 
 	// Display the input
 	printf("Length of the Vector: %d\n\n", n);
-	printf("Vector X (First 16):\n");
+	printf("Vector X:\n");
 	printf("%1.2f", X[0]);
 	for (int i = 1; i < n; i++) {
 		if (i > 15) {
+			printf("...");
 			break;
 		}
 		printf(", %1.2f", X[i]);
@@ -59,12 +60,13 @@ int main() {
 	printf("\n\n");
 
 	// Display the output of C Kernel
-	printf("Vector Y (First 10) (C Kernel):\n");
+	printf("Vector Y (C Kernel):\n");
 	if (n >= 7) {
 		printf("%1.2f", Y_c[3]);
 	}
 	for (int i = 4; i < n - 3; i++) {
 		if (i > 12) {
+			printf("...");
 			break;
 		}
 		printf(", %1.2f", Y_c[i]);
@@ -73,12 +75,13 @@ int main() {
 
 	/*
 	// Display the output of ASM Kernel
-	printf("Vector Y (First 10) (ASM Kernel):\n");
+	printf("Vector Y (ASM Kernel):\n");
 	if (n >= 7) {
 		printf("%1.2f", Y_asm[3]);
 	}
 	for (int i = 4; i < n - 3; i++) {
 		if (i > 12) {
+			printf("...");
 			break;
 		}
 		printf(", %1.2f", Y_asm[i]);
@@ -89,8 +92,8 @@ int main() {
 	// Display elapsed time for each kernel
 	double elapsed_time_c = ((double)(end_c - start_c)) / CLOCKS_PER_SEC;
 	//double elapsed_time_asm = ((double)(end_asm - start_asm)) / CLOCKS_PER_SEC;
-	printf("C_kernel time: %.6f seconds\n", elapsed_time_c);
-	//printf("ASM_kernel time: %.6f seconds\n", elapsed_time_asm);
+	printf("Time (C Kernel): %.6f seconds\n", elapsed_time_c);
+	//printf("Time (ASM Kernel): %.6f seconds\n");
 
 	return 0;
 }
