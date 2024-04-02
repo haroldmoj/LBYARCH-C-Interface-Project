@@ -3,6 +3,12 @@
 
 This project performs a 1-dimensional stencil of a vector `X` with size `n` and places the result in a vector `Y` both in x86-64 assembly and C language. The program runs each kernel 30 times for a more distinct yield in average runtime and utilizes array sizes of 2^26 elements but will only be additionally ran at sizes 2^20 and 2^24. Higher array sizes were tested but produced inconsistent results (e.g. successful run but greatly varied average runtime, or does not run at all). 
 
+## Machine Properties, and Specifications:
+* OS: Windows 10
+* System: 64-bit operating system, x64-based processor
+* Processor: Intel Octa-Core i7-10510 @ 1.8-2.3GHz
+* RAM: 8192 MB @ 2600 MHz
+
 ## 1-D Stencil Formula
 
 $Y[i] = X[i - 3] + X[i - 2] + X[i - 1] + X[i] + X[i + 1] + X[i + 2] + X[i + 3]$
@@ -24,12 +30,6 @@ $Y[i] = X[i - 3] + X[i - 2] + X[i - 1] + X[i] + X[i + 1] + X[i + 2] + X[i + 3]$
 | $2^{26}$          | 0.152133s      | 0.142767s             | Assembly   | 106.56%   |
 
 From the average runtimes in both debug and release mode, it can be inferred that the Assembly implementation has a better performance than the C implementation due to the consistency in difference of the average runtimes of each kernel at their respective array sizes. This can be due to the lower-level nature of the Assembly language plus its capacity to run multiple data operations using a single instruction being able to run and compute more optimally than that of the C implementation. 
-
-## Machine Components, Properties, and Specifications:
-* OS: Windows 10
-* System: 64-bit operating system, x64-based processor
-* Processor: Intel Octa-Core i7-10510 @ 1.8-2.3GHz
-* RAM: 8192 MB @ 2600 MHz
 
 ## Program Output Screenshots
 
