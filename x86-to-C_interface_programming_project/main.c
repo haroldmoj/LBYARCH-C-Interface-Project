@@ -3,19 +3,20 @@
 #include <windows.h>
 
 extern void c_kernel();
-// TODO: extern void asm_kernel();
+// extern void asm_kernel();
 
 int main() {
-	// Initialize inputs
+	// Initialize
 	float X[] = { 1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0 };
-	float Y[10];
+	float Y_c[10];
+	// float Y_asm[10];
 	int n = sizeof(X) / sizeof(X[0]);
 
-	// Call the kernels to get Y
-	c_kernel(X, Y, n);
-	// TODO: asm_kernel();
+	// Get Y
+	c_kernel(X, Y_c, n);
+	// asm_kernel(X, Y_asm, n);
 
-	// Display inputs and outputs
+	// Display inputs
 	printf("Length of the Vector: %d\n", n);
 
 	printf("Vector X: ");
@@ -24,11 +25,20 @@ int main() {
 	}
 	printf("\n");
 
-	printf("Vector Y: ");
+	// Display output of C Kernel
+	printf("Vector Y (C Kernel): ");
 	for (int i = 3; i < n - 3; i++) {
-		printf("%1.2f ", Y[i]);
+		printf("%1.2f ", Y_c[i]);
 	}
 	printf("\n");
+
+	/* // Display output of ASM Kernel
+	printf("Vector Y (ASM Kernel): ");
+	for (int i = 3; i < n - 3; i++) {
+		printf("%1.2f ", Y_asm[i]);
+	}
+	printf("\n");
+	*/
 
 	return 0;
 }
