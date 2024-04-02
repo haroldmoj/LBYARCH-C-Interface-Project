@@ -2,7 +2,7 @@
 
 #include <stdio.h>
 
-void c_kernel(float* X, float* Y, int n) {
+void c_kernel(int n, float* X, float* Y) {
     for (int i = 3; i < n - 3; i++) {
         float sum = 0.0;
         for (int j = -3; j <= 3; j++) {

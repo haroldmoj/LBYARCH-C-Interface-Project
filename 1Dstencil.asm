@@ -1,28 +1,29 @@
-; Harold, Mojica C. | Yung Cheng, Adrian U. | S15
+; Mojica, Harold C. | Yung Cheng, Adrian U. | S15
 
 %include "io64.inc"
 section .data
-displayCurrent db "Current: %1.2lf", 10, 0
-displaySum db "Sum: %1.2lf", 10, 0
+displayCurrent db "Current: %1.2f", 10, 0
+displaySum db "Sum: %g", 10, 0
+separator db "-------", 10, 0
 
 ; ENTER X HERE (VECTOR VALUES)
-X dq 1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0
+X dd 1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0
 ; ENTER N HERE (X SIZE)
-n dq 8
+n dd 8
 
-Y times 10 dq  0.0
-float_zero dq 0.0
+Y times 10 dd  0.0
+float_zero dd 0.0
 ;X dq 0.0, 2.0, 4.0, 6.0, 8.0, 10.0, 12.0, 14.0
 ;X dq 9.0, 1.0, 6.0, 4.0, 17.0, 2.0, 6.0, 8.0, 60.0
 
 
-i dq 0
-yIndex dq 0
+i dd 0
+yIndex dd 0
 
-offset dq 0
+offset dd 0
 
 
-scanfp db "%lf", 0
+scanfp db "%f", 0
 scanstr db "%s", 0
 
 section .text
@@ -33,58 +34,58 @@ global main
 extern printf, scanf
 main:
     mov rbp, rsp; for correct debugging
-    mov rsi, 3
-    sub rsp, 8 * 7
+    mov esi, 3
+    sub esp, 8 * 7
     
 while_loop:
-    movsd xmm0, [float_zero]
-    mov r8, -3
-    mov r10, [n] ; <replace with [n]
-    sub r10, 3
-    cmp rsi, r10 ; <- replace with n - 3, since the function requires all to have values, and an index more than n - 3 gives null/0
+    movss xmm0, [float_zero]
+    mov r8d, -3
+    mov r10d, [n] ; <replace with [n]
+    sub r10d, 3
+    cmp esi, r10d ; <- replace with n - 3, since the function requires all to have values, and an index more than n - 3 gives null/0
     je exit
     
     inner_while:
         ; current i
-        mov rbx, rsi
+        mov ebx, esi
         
-        cmp rbx, 0
+        cmp ebx, 0
         jge cont_inner_while
         
         ; jmp negative_index
         
 ;       negative_index:
-;            mov r9, [n] ; <- replace with [n]
-;            dec r9
-;            add rbx, r9
+;            mov r9d, [n] ; <- replace with [n]
+;            dec r9d
+;            add ebx, r9d
 ;            
-;            PRINT_DEC 8, rbx
+;            PRINT_DEC 8, ebx
 ;            NEWLINE
 ;            
 ;            jmp cont_inner_while
         
     cont_inner_while:
-        add rbx, r8
-        ; Increment R8
-        inc r8
-        ; Move r8 to offset
-        mov qword [offset], r8
+        add ebx, r8d
+        ; Increment r8d
+        inc r8d
+        ; Move r8d to offset
+        mov dword [offset], r8d
         
 ;        ; Print Current Number from indexing (tracing)
-;        mov rdx, [tempX + rbx * 8]
-;        mov rcx, displayCurrent
+;        mov edx, [tempX + ebx * 4]
+;        mov ecx, displayCurrent
 ;        call printf
         
-        movsd xmm1, [X + rbx * 8]
-        addsd xmm0, xmm1
+        movss xmm1, [X + ebx * 4]
+        addss xmm0, xmm1
         
-        ; return offset to r8
-        mov r8, qword [offset]
-;        PRINT_DEC 8, r8
+        ; return offset to r8d
+        mov r8d, dword [offset]
+;        PRINT_DEC 8, r8d
 ;        NEWLINE
         
                 
-        cmp r8, 4
+        cmp r8d, 4
         je end_inner_loop
 
         
@@ -92,23 +93,23 @@ while_loop:
         
     end_inner_loop:
         ; Print Current Sum
-        mov rbx, [yIndex]
-        movsd qword [Y + rbx * 8], xmm0
-        mov rdx, [Y + rbx * 8]
-        mov rcx, displaySum
+        mov ebx, [yIndex]
+        movss dword [Y + ebx * 4], xmm0
+        mov edx, [Y + ebx * 4]
+        mov ecx, displaySum
         call printf
-        PRINT_STRING "-------"
-        NEWLINE
-        inc qword [yIndex]
+        mov ecx, separator
+        call printf
+        inc dword [yIndex]
         jmp cont_while_loop
     
     
 cont_while_loop:
-    inc rsi
+    inc esi
     jmp while_loop
     
 exit:
-    add rsp, 8 * 7
+    add esp, 8 * 7
     
     xor rax, rax
     ret
