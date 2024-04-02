@@ -3,7 +3,7 @@
 %include "io64.inc"
 section .data
 displayCurrent db "Current: %1.2f", 10, 0
-displaySum db "Sum: %g", 10, 0
+displaySum db "Sum: %f", 10, 0
 separator db "-------", 10, 0
 
 ; ENTER X HERE (VECTOR VALUES)
