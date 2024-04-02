@@ -6,6 +6,7 @@ This project performs a 1-dimensional stencil of a vector **X** with size **n** 
 
 ### Debug Mode
 | **Vector Size**   | **C**             | **Assembly**      | **Faster** | **%**     |
+|:-----------------:|:-----------------:|:-----------------:|:----------:|:---------:|
 | $2^{20}$          | (time)            | (time)            | (C/ASM)    | (percent) |
 | $2^{24}$          | (time)            | (time)            | (C/ASM)    | (percent) |
 | $2^{29}$          | (time)            | (time)            | (C/ASM)    | (percent) |
@@ -15,6 +16,7 @@ This project performs a 1-dimensional stencil of a vector **X** with size **n** 
 
 ### Release Mode
 | **Vector Size**   | **C**             | **Assembly**      | **Faster** | **%**     |
+|:-----------------:|:-----------------:|:-----------------:|:----------:|:---------:|
 | $2^{20}$          | (time)            | (time)            | (C/ASM)    | (percent) |
 | $2^{24}$          | (time)            | (time)            | (C/ASM)    | (percent) |
 | $2^{29}$          | (time)            | (time)            | (C/ASM)    | (percent) |
