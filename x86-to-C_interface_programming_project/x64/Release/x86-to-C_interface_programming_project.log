@@ -1,6 +1,9 @@
-﻿  main.c
-C:\Users\harol\Documents\GitHub\LBYARCH-C-Interface-Project\x86-to-C_interface_programming_project\main.c(94,9): warning C4473: 'printf' : not enough arguments passed for format string
-C:\Users\harol\Documents\GitHub\LBYARCH-C-Interface-Project\x86-to-C_interface_programming_project\main.c(94,9): message : placeholders and their parameters expect 1 variadic arguments, but 0 were provided
-C:\Users\harol\Documents\GitHub\LBYARCH-C-Interface-Project\x86-to-C_interface_programming_project\main.c(94,9): message : the missing variadic argument 1 is required by format string '%.6f'
-main.obj : error LNK2001: unresolved external symbol asm_kernel
-C:\Users\harol\Documents\GitHub\LBYARCH-C-Interface-Project\x86-to-C_interface_programming_project\x64\Release\x86-to-C_interface_programming_project.exe : fatal error LNK1120: 1 unresolved externals
+﻿  Performing Custom Build Tools
+  main.c
+C:\Users\harol\Documents\GitHub\LBYARCH-C-Interface-Project\x86-to-C_interface_programming_project\main.c(31,8): warning C4244: 'function': conversion from 'time_t' to 'unsigned int', possible loss of data
+  Generating code
+  3 of 7 functions (42.9%) were compiled, the rest were copied from previous compilation.
+    0 functions were new in current compilation
+    0 functions had inline decision re-evaluated but remain unchanged
+  Finished generating code
+  x86-to-C_interface_programming_project.vcxproj -> C:\Users\harol\Documents\GitHub\LBYARCH-C-Interface-Project\x86-to-C_interface_programming_project\x64\Release\x86-to-C_interface_programming_project.exe

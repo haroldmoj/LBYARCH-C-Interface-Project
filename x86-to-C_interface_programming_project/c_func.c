@@ -8,6 +8,6 @@ void c_kernel(int n, float* X, float* Y) {
         for (int j = -3; j <= 3; j++) {
             sum += X[i + j];
         }
-        Y[i] = sum;
+        Y[i-3] = sum;
     }
 }
