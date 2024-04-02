@@ -1,3 +1,5 @@
+// Mojica, Harold C. | Yung Cheng, Adrian U. | S15
+
 #include <stdio.h>
 
 void c_kernel(float* X, float* Y, int n) {

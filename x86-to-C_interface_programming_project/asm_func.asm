@@ -1,6 +1,6 @@
 ; Mojica, Harold C. | Yung Cheng, Adrian U. | S15
 
-;%include "C:\Program Files\NASM\io64.inc"
+;%include "C:\NASM\io64.inc"
 section .data
 displayCurrent db "Current: %1.2lf", 10, 0
 displaySum db "Sum: %1.2lf", 10, 0
