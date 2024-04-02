@@ -1,5 +1,5 @@
 # LBYARCH Machine Project 2: x86-to-C Interface Programming
-```By Mojica, Harold C. and Yung Cheng, Adrian U. of S15```
+```Mojica, Harold C. | Yung Cheng, Adrian U. | S15```
 
 This project performs a 1-dimensional stencil of a vector `X` with size `n` and places the result in a vector `Y` both in x86-64 assembly and C language. The program runs each kernel 30 times for a more distinct yield in average runtime and utilizes array sizes of 2^29 elements but will only be additionally ran at sizes 2^20 and 2^24. A max size of 2^30 was tested for the program but produced inconsistent results (e.g. successful run but greatly varied average runtime, or does not run at all). 
 
@@ -17,7 +17,7 @@ $Y[i] = X[i - 3] + X[i - 2] + X[i - 1] + X[i] + X[i + 1] + X[i + 2] + X[i + 3]$
 | $2^{29}$          | (time)            | (time)            | Assembly   | (percent) |
 
 
-(explanation why Assembly is faster in debug mode)
+From the average runtimes in debug mode, it can be inferred that the Assembly implementation has a better performance than the C implementation due to the consistency in difference of the average runtimes of each kernel at their respective array sizes. This can be due to the lower-level nature of the Assembly language plus its capacity to run multiple data operations using a single instruction being able to run and compute more optimally than that of the C implementation. 
 
 ### Release Mode
 | **Vector Size**   | **C**             | **Assembly**      | **Faster** | **%**     |
@@ -26,7 +26,7 @@ $Y[i] = X[i - 3] + X[i - 2] + X[i - 1] + X[i] + X[i + 1] + X[i + 2] + X[i + 3]$
 | $2^{24}$          | (time)            | (time)            | C          | (percent) |
 | $2^{29}$          | (time)            | (time)            | C          | (percent) |
 
-(explanation why C is faster in release mode)
+In release mode, on the other hand, the C implementation possesses better processing speeds than that of the Assembly implementation. This can be attributed to the optimization abstraction techniques that comes along with a higher-level language that the former has compared to those available to the latter. Although on a considerably small scale due to the unit of measurement used, the difference in processing speeds can easily show that the C implementation does have its advantages and higher-level superiority in certain circumstances. 
 
 ## Program Output Screenshots
 
